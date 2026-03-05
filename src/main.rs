@@ -1,11 +1,14 @@
+use std::io;
 use std::process::Command;
 
-fn main() {
-    println!("Hello, oxide!!!");
-    let s1: &str = "ls";
-    println!("ls - list directory");
-    Command::new(s1)
+fn main() -> io::Result<()> {
+    let mut buf = String::new();
+    println!("Enter `ls` command");
+    io::stdin().read_line(&mut buf)?;
+    println!("command entered : {}", buf.trim());
+    Command::new(buf.trim())
         .arg("-l")
         .spawn()
         .expect("`ls` command not found!!!");
+    Ok(())
 }
