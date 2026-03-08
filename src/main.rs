@@ -4,7 +4,12 @@ use std::io;
 use std::io::Write;
 use std::process::Command;
 
+use crate::gui::gui;
+
+mod gui;
+
 fn main() -> io::Result<()> {
+    gui();
     let mut session_buf = String::new();
     loop {
         println!("Enter `ls` command");
